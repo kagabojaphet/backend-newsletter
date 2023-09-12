@@ -5,7 +5,7 @@ import errormessage from "../utils/errormessage";
 
 class datacheck{
     static userRegisterIsEmpty(req,res,next){
-        const {firstname,lastname,email,password}=req.body
+        const {firstname,lastname,email,password,message}=req.body
         if(firstname==""){
             return errormessage (res,401,`please write fristname properly`)
         }
@@ -17,6 +17,9 @@ class datacheck{
         }
         else if(password==""){
             return errormessage (res,401,`please write password porperly`)
+        }
+        else if(message==""){
+            return errormessage (res,401,`please write messageporperly`)
         }
         else{
             return next()

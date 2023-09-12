@@ -5,3 +5,4 @@ const successmessage=(res,status,message,data)=>{
     })
 }
 export default successmessage
+

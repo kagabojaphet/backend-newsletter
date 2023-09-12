@@ -59,7 +59,7 @@ class usercontroller{
         const {id} = req.params
         const user =await User.deleteOne({_id:id});
         if(!user){
-            return errormessage(res,201,`user not deleted`)
+            return errormessage(res,400,`user not deleted`)
         }
         else{
             return successmessage(res,200,`user deleted`)

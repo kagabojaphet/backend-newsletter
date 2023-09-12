@@ -1,5 +1,6 @@
 import errormessage from "../utils/errormessage";
 import mmessage from "../model/message";
+import successmessage from "../utils/successmessage";
 
 class messagecontroller{
     static async createmessage(req,res){
@@ -15,6 +16,26 @@ class messagecontroller{
         } catch (error) {
             
         }
+    }
+        static async getAllMessage(req,res){
+            const mssg=await mmessage.find()
+            if(!mssg || mssg.length==0){
+                return errormessage(res,401,`no message found`)
+            }else{
+                return successmessage(res,200,`message ${mssg.length} successfuly retrieved`,mssg)
+            }
+    
+        }
+
+   
+    static async  deleteallmessage(req,res){
+      const mssg=await mmessage.deleteMany();
+      if(!mssg){
+        return errormessage(res,401,`no message deleted`)
+      }  
+      else{
+        return successmessage(res,200,`all message deleted`)
+      }
     }
 }
 export default messagecontroller
