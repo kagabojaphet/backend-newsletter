@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const commentschema=new mongoose.Schema({
 
-    user:[{
+    user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
-    }],
+    },
     comment:{
         type:String
     },
