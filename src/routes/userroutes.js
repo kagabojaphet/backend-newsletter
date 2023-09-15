@@ -12,10 +12,10 @@ datacheck.emailExist,
 Validator.userAccountRule(),
 Validator.inputValidator,
 usercontroller.createruser)
-router.get("/",verifyaccess,usercontroller.getalluser)
+router.get("/",verifyaccess("user"),usercontroller.getalluser)
 router.get("/:id",usercontroller.getOneUser)
-router.delete("/",usercontroller.deletealluser)
-router.delete("/:id",verifyaccess,usercontroller.deleteOneUser)
-router.patch("/:id",usercontroller.updateUser)
+router.delete("/",verifyaccess("user"),usercontroller.deletealluser)
+router.delete("/:id",verifyaccess("user"),usercontroller.deleteOneUser)
+router.patch("/:id",verifyaccess("user"),usercontroller.updateUser)
 router.post("/login",usercontroller.loginuser)
 export default router

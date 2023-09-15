@@ -1,29 +1,34 @@
 
 import errormessage from "../utils/errormessage";
-import  expressValidator  from "express-validator";
 import Jwt,{JsonWebTokenError}  from "jsonwebtoken";
 
 
-const verifyaccess=(req,res,next)=>{
+const verifyaccess=(passrole)=>{
+  return (req,res,next)=>{
     const token=req.headers["kiki-token"]
+ 
     if(!token){
         return errormessage(res,401,`no token provided`)
     }else{
         try{
         const verifytoken=Jwt.verify(token,process.env.SCRET_KEY,{expiresIn:"1d"})
-        if(verifytoken.role!=="admin"){
+     
+        req.user=verifytoken.user;
+        
+        if(passrole!==verifytoken.user.role){
             return errormessage(res,401,`have not access`)
         }
-        else{
-            
-                return next()
-        }
+        return next()
+
         }
         catch(error){
-         if(error=JsonWebTokenError){
+        
+         if(error.name=JsonWebTokenError){
             return errormessage(res,401,`invalid token`)
+         }else{
+            console.log(error)
          }
         }
     }
-}
+}}
 export default verifyaccess

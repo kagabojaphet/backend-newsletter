@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken"
 
 class usercontroller{
     static async createruser(req,res){
-        const {firstname,lastname,email,password}=req.body
+        const {firstname,lastname,email,password,role}=req.body
         try{
             if(req.body.password!==req.body.confirmpassword){
                 return errormessage(res,401,`password and confirmpassword not match`)
@@ -87,15 +87,11 @@ class usercontroller{
                 return errormessage(res,401,`incorrect  password`)
             }
             else{
-                const token=jwt.sign({role:user.role,email:user.email,password:user.password,firstname:user.firstname,lastname:user.lastname},process.env.SCRET_KEY,{expiresIn:"1d"})
+                const token=jwt.sign({user:user},process.env.SCRET_KEY,{expiresIn:"1d"})
                 return res.status(200).json({
                     token:token,
                     data:{
-                        role:user.role,
-                        email:user.email,
-                        password:user.password,
-                        firstname:user.firstname,
-                        lastname:user.lastname
+                         user:user,
                     }
                 })
             }

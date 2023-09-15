@@ -1,6 +1,8 @@
 import news from "../model/news";
 import errormessage from "../utils/errormessage";
 import successmessage from "../utils/successmessage";
+import  sendemail from "../utils/email"
+import User from "../model/user";
 
 class newscontroller{
     static async creaternews(req,res){
@@ -10,6 +12,11 @@ class newscontroller{
             return errormessage(res,401,`no news found`)
         }
         else{
+            const users=await User.find();
+            users.map((usere)=>{
+                sendemail(usere,newsletter)
+            })
+
             return successmessage(res,201,`news sucessfuly sent`,newsletter)
         }
     }
@@ -19,7 +26,7 @@ class newscontroller{
             return errormessage (res,401,`news not found`)
         }
         else{
-            return successmessage(res,200,`news successfuly ${newsletter.length} retrieved`,newsletter)
+            return successmessage(res,201,`news successfuly ${newsletter.length} retrieved`,newsletter)
         }
     }
     static async deleteallnews(req,res){
@@ -61,6 +68,32 @@ class newscontroller{
         }
         else{
             return successmessage(res,200,`news successfuly update`,newsletter)
+        }
+    }
+
+    static async like(req,res){
+        const id=req.params.id
+        const newslikes=await news.findById(id)
+        if(!newslikes){
+            return errormessage(res,401,`news not found`)
+        }
+        else{
+            newslikes.likes += 1;
+            await newslikes.save();
+            return successmessage(res,200,`you liked ${newslikes.likes}`,newslikes)
+        }
+    }
+
+    static async dislike(req,res){
+        const id=req.params.id
+        const newslikes=await news.findById(id)
+        if(!newslikes){
+            return errormessage(res,401,`news not found`)
+        }
+        else{
+            newslikes.dislikes += 1;
+            await newslikes.save();
+            return successmessage(res,200,`you disliked ${newslikes.dislikes}`,newslikes)
         }
     }
 }

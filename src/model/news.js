@@ -30,7 +30,29 @@ const newsschema=new mongoose.Schema({
     publishername:{
         type:String,
         required:true
-    }
+    },
+    likes:{
+        type:Number,
+        default:0
+    },
+    dislikes:{
+        type:Number,
+        default:0
+    },
+    comment:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Comment"
+    }]
 })
+
+newsschema.pre(/^find/,function(next){
+    this.populate({
+        path:"comment",
+        select:"comment postedat"
+    })
+    next()
+})
+
+
 const news=mongoose.model("news",newsschema)
 export default news
