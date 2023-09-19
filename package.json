@@ -39,7 +39,6 @@
     "web": "^0.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.20",
     "@babel/plugin-proposal-class-properties": "^7.18.6"
   }
 }
