@@ -12,7 +12,7 @@ class commentcontroller{
     const comment=await Comment.create(req.body)
     const newes=await news.findByIdAndUpdate({_id:newsidparams},{$push:{comment:comment}},{new:true})
     if(!newes){
-        return errormessage(res,401,`no news found`)
+        return errormessage(res,401,`no news found`)    
     }
     else{
         return successmessage(res,200,`comment successfuly created`,newes)
