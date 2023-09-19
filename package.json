@@ -39,5 +39,8 @@
     "token": "^0.1.0",
     "validator": "^13.11.0",
     "web": "^0.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6"
   }
 }
