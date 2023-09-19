@@ -3,6 +3,7 @@
   "plugins": [
     ["@babel/transform-runtime"],
     "@babel/plugin-transform-class-properties",
-    "@babel/core"
+    "@babel/core",
+    "@babel/register"
   ]
 }
