@@ -31,27 +31,34 @@ const newsschema=new mongoose.Schema({
         type:String,
         required:true
     },
-    likes:{
-        type:Number,
-        default:0
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Category",
     },
-    dislikes:{
-        type:Number,
-        default:0
-    },
+    likes:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    }],
+    dislikes:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    }],
     comment:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Comment"
     }]
-})
+});
 
 newsschema.pre(/^find/,function(next){
     this.populate({
         path:"comment",
         select:"comment postedat"
-    })
-    next()
-})
+    }).populate({
+        path:"category",
+        select:"categoryname"
+    });
+    next();
+});
 
 
 const news=mongoose.model("news",newsschema)

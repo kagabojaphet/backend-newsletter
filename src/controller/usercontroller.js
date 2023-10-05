@@ -14,7 +14,7 @@ class usercontroller{
             } 
             //hash password
             const hashpassword= bcrypt.hashSync(req.body.password,10)
-            const user=await User.create({firstname,lastname,email,password:hashpassword})
+            const user=await User.create({firstname,lastname,email,role,password:hashpassword})
 
             return successmessage(res,201,`user created`,user)
         }

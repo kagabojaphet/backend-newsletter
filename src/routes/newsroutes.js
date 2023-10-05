@@ -7,10 +7,11 @@ const router=express.Router()
 router.post("/",verifyaccess("admin"),newscontroller.creaternews)
 router.get("/",newscontroller.getallnews)
 router.get("/:id",newscontroller.getonenews)
+router.get("/search",newscontroller.searchcategory)
 router.delete("/",verifyaccess("admin"),newscontroller.deleteallnews)
 router.delete("/:id",verifyaccess("admin"),newscontroller.deleteonenews)
 router.patch("/:id",verifyaccess("admin"),newscontroller.updatenews)
-router.put("/like/:id",newscontroller.like)
-router.put("/dislike/:id",newscontroller.dislike)
+router.put("/like/:id",verifyaccess("user"),newscontroller.like)
+router.put("/dislike/:id",verifyaccess("user"),newscontroller.dislike)
 
 export default router
