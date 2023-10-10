@@ -87,7 +87,7 @@ class usercontroller{
                 return errormessage(res,401,`incorrect  password`)
             }
             else{
-                const token=jwt.sign({user:user},process.env.SCRET_KEY,{expiresIn:"1d"})
+                const token=jwt.sign({user:user},process.env.SECRET_KEY,{expiresIn:"1d"})
                 return res.status(200).json({
                     token:token,
                     data:{

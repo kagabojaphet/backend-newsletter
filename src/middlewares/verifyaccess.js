@@ -11,7 +11,7 @@ const verifyaccess=(passrole)=>{
         return errormessage(res,401,`no token provided`)
     }else{
         try{
-        const verifytoken=Jwt.verify(token,process.env.SCRET_KEY,{expiresIn:"1d"})
+        const verifytoken=Jwt.verify(token,process.env.SECRET_KEY,{expiresIn:"1d"})
      
         req.user=verifytoken.user;
         
