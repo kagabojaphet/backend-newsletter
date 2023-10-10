@@ -27,6 +27,10 @@ const newsschema=new mongoose.Schema({
         type:Array,
         required:true
     },
+    date:{
+        type:Date,
+        default:Date.now()
+    },
     publishername:{
         type:String,
         required:true
