@@ -24,7 +24,7 @@ const newsschema=new mongoose.Schema({
         required:true
     },
     newsimage:{
-        type:String,
+        type:Array,
         required:true
     },
     publishername:{
