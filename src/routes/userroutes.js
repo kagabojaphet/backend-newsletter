@@ -12,7 +12,7 @@ datacheck.emailExist,
 Validator.userAccountRule(),
 Validator.inputValidator,
 usercontroller.createruser)
-router.get("/",verifyaccess("user"),usercontroller.getalluser)
+router.get("/",verifyaccess("admin"),usercontroller.getalluser)
 router.get("/:id",usercontroller.getOneUser)
 router.delete("/",verifyaccess("user"),usercontroller.deletealluser)
 router.delete("/:id",verifyaccess("user"),usercontroller.deleteOneUser)
