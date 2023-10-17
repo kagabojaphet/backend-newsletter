@@ -16,7 +16,7 @@ const verifyaccess=(passrole)=>{
         req.user=verifytoken.user;
         
         if(passrole!==verifytoken.user.role){
-            return errormessage(res,401,`have not access`)
+            return errormessage(res,401,`Don't have not access`)
         }
         return next()
 
