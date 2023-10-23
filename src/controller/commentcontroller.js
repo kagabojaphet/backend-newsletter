@@ -27,6 +27,16 @@ class commentcontroller{
             return successmessage(res,200,`all ${comment.length} comments`,comment)
         }
     }
+    static async deleteonecomment(req,res){
+        const idparams=req.params.id
+        const comment=await Comment.findByIdAndDelete({_id:idparams})
+        if(!comment){
+            return errormessage(res,401,`comment not deleted`)
+        }
+        else{
+            return successmessage(res,200,`comment successfuly deleted`)
+        }
+    }
 
 }
 export default commentcontroller
