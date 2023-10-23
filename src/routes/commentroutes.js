@@ -6,6 +6,6 @@ import verifyaccess from "../middlewares/verifyaccess";
 const router=express.Router()
 
 router.post("/:id",verifyaccess("user"),commentcontroller.createcomment)
-router.get("/",commentcontroller.getallcomment)
+router.get("/",verifyaccess("admin"),commentcontroller.getallcomment)
 
 export default router
