@@ -4,7 +4,7 @@ import verifyaccess from "../middlewares/verifyaccess";
 
 const router=express.Router()
 
-router.post("/",verifyaccess("admin"),categorycontroller.createcategory)
+router.post("/",categorycontroller.createcategory)
 router.get("/",verifyaccess("admin"),categorycontroller.getallcategory)
 
 
