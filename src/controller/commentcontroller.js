@@ -28,8 +28,8 @@ class commentcontroller{
         }
     }
     static async deleteonecomment(req,res){
-        const idparams=req.params.id
-        const comment=await Comment.findByIdAndDelete({_id:idparams})
+        const id=req.params.id
+        const comment=await Comment.findByIdAndDelete({_id:id})
         if(!comment){
             return errormessage(res,401,`comment not deleted`)
         }
