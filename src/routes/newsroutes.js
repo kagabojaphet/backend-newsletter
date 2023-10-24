@@ -4,7 +4,7 @@ import verifyaccess from "../middlewares/verifyaccess";
 
 const router=express.Router()
 
-router.post("/",newscontroller.creaternews)
+router.post("/",verifyaccess("admin"),newscontroller.creaternews)
 router.get("/",newscontroller.getallnews)
 router.get("/:id",newscontroller.getonenews)
 router.get("/search",newscontroller.searchcategory)
