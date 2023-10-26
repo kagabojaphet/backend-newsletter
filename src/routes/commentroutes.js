@@ -8,5 +8,6 @@ const router=express.Router()
 router.post("/:id",verifyaccess("user"),commentcontroller.createcomment)
 router.get("/",verifyaccess("admin"),commentcontroller.getallcomment)
 router.delete("/:id",commentcontroller.deleteonecomment)
+router.get("/:id",commentcontroller.getonecomment)
 
 export default router

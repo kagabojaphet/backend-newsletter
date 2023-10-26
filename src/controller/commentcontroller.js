@@ -37,6 +37,16 @@ class commentcontroller{
             return successmessage(res,200,`comment successfuly deleted`)
         }
     }
+    static async getonecomment(req,res){
+        const id=req.params.id
+        const comment=await Comment.findById({_id:id})
+        if(!comment){
+            return errormessage(res,401,`comment with id: ${id} not found`)
+        }
+        else{
+            return successmessage(res,200,`comment successfuly retrieved`,comment)
+        }
+    }
 
 }
 export default commentcontroller
